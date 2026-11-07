@@ -1,0 +1,147 @@
+/* Podstrony New Sanctuary: ramka pocięta z tła strony głównej
+   (nagłówek z posągami, boczne listwy powtarzane w pionie, ognisko na dole). */
+html, body { margin: 0; background: #0b0a09; }
+
+.ramka {
+  width: min(1199px, 100vw);
+  margin: 0 auto;
+  container-type: inline-size;
+}
+.ramka img { display: block; width: 100%; height: auto; }
+
+.ramka-gora, .ramka-dol { position: relative; }
+
+/* środek: kamienne listwy po bokach + ciemne niebo */
+.ramka-srodek {
+  position: relative;
+  padding: 2.5cqw 9% 3cqw;
+  background:
+    url("assets/ramka_bok_l.png") left top / 4.003% auto repeat-y,
+    url("assets/ramka_bok_p.png") right top / 4.003% auto repeat-y,
+    radial-gradient(ellipse at 50% 0%, #22252c 0%, #15171c 55%, #0f1014 100%);
+  color: #e4ddcb;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(14px, 1.35cqw, 17px);
+  line-height: 1.6;
+}
+/* dolna grafika łagodnie wychodzi z tła */
+.ramka-dol img {
+  background:
+    url("assets/ramka_bok_l.png") left top / 4.003% auto repeat-y,
+    url("assets/ramka_bok_p.png") right top / 4.003% auto repeat-y;
+}
+.ramka-dol { background:
+    url("assets/ramka_bok_l.png") left top / 4.003% auto repeat-y,
+    url("assets/ramka_bok_p.png") right top / 4.003% auto repeat-y,
+    #0f1014; }
+
+h1 {
+  margin: 0;
+  text-align: center;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: clamp(26px, 3cqw, 38px);
+  letter-spacing: 0.15em;
+  background: linear-gradient(180deg, #fff6c2 0%, #ffcf4a 35%, #ff7a12 70%, #b81c04 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 6px rgba(255, 110, 20, 0.6));
+}
+h2 {
+  margin: 2em 0 0.7em;
+  padding-bottom: 0.3em;
+  font-family: "Cinzel", Georgia, serif;
+  font-size: 1.3em;
+  letter-spacing: 0.05em;
+  color: #e6c77a;
+  border-bottom: 1px solid #6e5424;
+}
+h3 { font-family: "Cinzel", Georgia, serif; color: #d9b96a; font-size: 1.05em; margin: 1.4em 0 0.4em; }
+a { color: #e6c77a; }
+li { margin-bottom: 0.5em; }
+.wstep { text-align: center; color: #b5ad9c; }
+.uwaga { padding: 0.8em 1em; border-left: 3px solid #b8913f; background: rgba(184, 145, 63, 0.08); }
+.spis { columns: 2; padding-left: 1.2em; }
+.spis li { margin-bottom: 0.25em; }
+
+.ozdoba { display: flex; align-items: center; gap: 0.6cqw; width: 56%; margin: 1.2cqw auto 1.5cqw; }
+.ozdoba::before, .ozdoba::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #c79c4a); }
+.ozdoba::after { background: linear-gradient(90deg, #c79c4a, transparent); }
+.ozdoba span { width: 0.9cqw; height: 0.9cqw; min-width: 8px; min-height: 8px; transform: rotate(45deg); border: 1px solid #e3c27a; background: #2a1d0c; }
+
+/* przyciski w stylu strony głównej („Mroczna Przystań”):
+   – w nagłówku: przyciski narysowane na grafice + niewidoczne pola do klikania,
+   – „Strona główna”: pusty przycisk wycięty z grafiki (assets/przycisk_pusty.png) + napis */
+.gora, .przycisk {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none;
+  border-radius: 0.3cqw;
+  transition: backdrop-filter 0.15s, box-shadow 0.15s, filter 0.15s;
+}
+.gora { position: absolute; top: 45.1%; height: 29.1%; }
+.gora:hover { backdrop-filter: brightness(1.25); box-shadow: 0 0 1cqw rgba(255,170,60,0.45); }
+.gora:active { backdrop-filter: brightness(0.85); }
+
+.przycisk {
+  box-sizing: border-box;
+  aspect-ratio: 377 / 84;
+  background: url("assets/przycisk_pusty.png") center / 100% 100% no-repeat;
+  font-family: "Cinzel", Georgia, serif; font-weight: 400;
+  font-size: 1.75cqw; letter-spacing: 0.22em; text-transform: uppercase;
+  padding-left: 0.22em;
+  color: #d2cfc7; -webkit-text-stroke: 0.04cqw #d2cfc7;
+  text-shadow: 0 1px 2px #000, 0 0 5px rgba(0,0,0,0.9);
+}
+.przycisk:hover { filter: brightness(1.25) drop-shadow(0 0 0.8cqw rgba(255,170,60,0.5)); }
+.przycisk:active { filter: brightness(0.85); }
+
+/* po najechaniu zapalają się niebieskie kamienie */
+.gora::before, .gora::after, .przycisk::before, .przycisk::after {
+  content: ""; position: absolute; top: 50%;
+  width: 3.2cqw; height: 3.2cqw; margin-top: -1.6cqw; border-radius: 50%;
+  background: radial-gradient(circle, rgba(170,220,255,0.9) 0%, rgba(60,150,255,0.5) 35%, transparent 70%);
+  opacity: 0; transition: opacity 0.15s; pointer-events: none;
+}
+.gora::before, .gora::after { width: 2.6cqw; height: 2.6cqw; margin-top: -1.3cqw; }
+.gora::before { left: calc(7.2% - 1.3cqw); }
+.gora::after { right: calc(7.2% - 1.3cqw); }
+.przycisk::before { left: calc(7.6% - 1.6cqw); }
+.przycisk::after { right: calc(7.6% - 1.6cqw); }
+.gora:hover::before, .gora:hover::after, .przycisk:hover::before, .przycisk:hover::after { opacity: 1; }
+
+.wroc { display: flex; justify-content: center; margin-top: 3cqw; }
+.wroc .przycisk { width: 31cqw; min-width: 260px; }
+
+.stopka {
+  position: absolute; left: 8%; width: 84%; top: 88.6%; margin: 0;
+  text-align: center; font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15cqw; color: #b5ad9c;
+  text-shadow: 0 1px 2px #000, 0 0 4px #000, 0 0 8px #000;
+}
+/* pobieranie: dwa pliki obok siebie (na telefonie jeden pod drugim) */
+.pobieranie { display: flex; gap: 2em; flex-wrap: wrap; }
+.pobieranie .plik { flex: 1 1 260px; padding: 0.4em 1.2em 1.2em; border: 1px solid #6e5424; background: rgba(0, 0, 0, 0.3); border-radius: 3px; }
+.pobieranie .plik h3 { margin-top: 0.8em; }
+.pobieranie .plik { display: flex; flex-direction: column; }
+.pobieranie .wroc { margin-top: auto; padding-top: 1em; }  /* przyciski na dole ramek, na jednej wysokości */
+.pobieranie .wroc .przycisk { width: 100%; max-width: 340px; min-width: 0; font-size: clamp(13px, 1.4cqw, 17px); letter-spacing: 0.12em; padding-left: 0.12em; }
+
+/* formularz informacji zwrotnej */
+.formularz { max-width: 640px; margin: 1.5em auto 0; display: flex; flex-direction: column; gap: 1em; }
+.formularz label { display: flex; flex-direction: column; gap: 0.35em; color: #d9b96a; font-family: "Cinzel", Georgia, serif; font-size: 0.95em; }
+.formularz input, .formularz select, .formularz textarea {
+  font-family: Georgia, "Times New Roman", serif; font-size: 1em; color: #ece5d3;
+  background: rgba(0, 0, 0, 0.45); border: 1px solid #6e5424; border-radius: 3px; padding: 0.55em 0.7em;
+}
+.formularz input:focus, .formularz select:focus, .formularz textarea:focus { outline: none; border-color: #e3c27a; box-shadow: 0 0 6px rgba(227, 194, 122, 0.35); }
+.formularz textarea { resize: vertical; min-height: 8em; }
+.formularz .ukryte { display: none; }
+.formularz button.przycisk { border: 0; cursor: pointer; }
+.formularz .wroc { margin-top: 0.5em; }
+.formularz .wynik { text-align: center; color: #e6c77a; min-height: 1.4em; margin: 0; }
+
+@media (max-width: 700px) {
+  .spis { columns: 1; }
+  .ramka-srodek { padding: 6% 8%; }
+  .stopka { font-size: 9px; line-height: 1.3; left: 6%; width: 88%; top: auto; bottom: 7.5%; }
+  .wroc .przycisk { font-size: 15px; }
+}

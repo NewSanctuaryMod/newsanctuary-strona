@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>New Sanctuary – mod do Diablo II: Resurrected</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; background: #0b0a09; }
+  /* cała strona = grafika „Gotyckie menu Diablo II: Mroczna Przystań” (1199 × 1312) z jej własnymi przyciskami;
+     przycisk „Informacja zwrotna” zamieniony na pusty (narzedzia\feedback_przycisk.py), napis „Feedback” dokłada HTML */
+  .scena {
+    position: relative;
+    width: min(1199px, 100vw);
+    margin: 0 auto;
+    container-type: inline-size;
+  }
+  .scena > img.tlo { display: block; width: 100%; height: auto; }
+  .srodek { position: absolute; left: 7.006%; top: 17.226%; width: 86.072%; height: 31.86%; object-fit: fill; display: block; }
+
+  /* klikalne pola dokładnie na narysowanych przyciskach */
+  .przycisk {
+    position: absolute;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    border-radius: 0.3cqw;
+    transition: backdrop-filter 0.15s, box-shadow 0.15s;
+  }
+  .przycisk:hover {
+    backdrop-filter: brightness(1.25);
+    box-shadow: 0 0 1cqw rgba(255, 170, 60, 0.45);
+  }
+  .przycisk:active { backdrop-filter: brightness(0.85); }
+  /* po najechaniu zapalają się niebieskie kamienie */
+  .przycisk::before, .przycisk::after {
+    content: ""; position: absolute; top: 50%;
+    width: 3.2cqw; height: 3.2cqw; margin-top: -1.6cqw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(170,220,255,0.9) 0%, rgba(60,150,255,0.5) 35%, transparent 70%);
+    opacity: 0; transition: opacity 0.15s; pointer-events: none;
+  }
+  .przycisk::before { left: calc(7.4% - 1.6cqw); }
+  .przycisk::after { right: calc(7.4% - 1.6cqw); }
+  .przycisk:hover::before, .przycisk:hover::after { opacity: 1; }
+  .gora::before, .gora::after { width: 2.6cqw; height: 2.6cqw; margin-top: -1.3cqw; }
+  .gora::before { left: calc(7.2% - 1.3cqw); }
+  .gora::after { right: calc(7.2% - 1.3cqw); }
+
+  /* napis „Feedback” w stylu napisów z grafiki */
+  .napis {
+    font-family: "Cinzel", Georgia, serif; font-weight: 400;
+    font-size: 1.75cqw; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #fbf6ea; -webkit-text-stroke: 0.05cqw #fbf6ea;
+    text-shadow: 0 1px 2px #000, 0 0 5px rgba(0,0,0,0.9);
+    padding-left: 0.2em;   /* wyrównanie odstępu po ostatniej literze */
+  }
+
+  .stopka {
+    position: absolute; left: 8%; width: 84%; top: 94.7%; margin: 0;
+    text-align: center; font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.15cqw; color: #b5ad9c;
+    text-shadow: 0 1px 2px #000, 0 0 4px #000, 0 0 8px #000;
+  }
+  /* ---------- telefon (wąski ekran): te same elementy jeden pod drugim ---------- */
+  .tel { display: none; }
+  @media (max-width: 700px) {
+    .scena { display: none; }
+    .tel { display: block; width: 100vw; }
+    .tel img { display: block; width: 100%; height: auto; }
+    .tel .t-gora, .tel .t-dol { position: relative; }
+    .tel .t-srodek {
+      padding: 16px 9% 24px;
+      background:
+        url("assets/ramka_bok_l.png") left top / 3.92% auto repeat-y,
+        url("assets/ramka_bok_p.png") right top / 3.92% auto repeat-y,
+        radial-gradient(ellipse at 50% 0%, #22252c 0%, #15171c 55%, #0f1014 100%);
+    }
+    .tel .t-opis {
+      margin: 0 0 12px; text-align: center;
+      font-family: Georgia, "Times New Roman", serif; font-size: 15px; line-height: 1.5;
+      color: #e4ddcb; text-shadow: 0 1px 2px #000;
+    }
+    .tel .t-ozdoba { display: flex; align-items: center; gap: 6px; width: 70%; margin: 0 auto 18px; }
+    .tel .t-ozdoba::before, .tel .t-ozdoba::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #c79c4a); }
+    .tel .t-ozdoba::after { background: linear-gradient(90deg, #c79c4a, transparent); }
+    .tel .t-ozdoba span { width: 8px; height: 8px; transform: rotate(45deg); border: 1px solid #e3c27a; background: #2a1d0c; }
+    .tel .t-lista { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .tel .t-lista a { display: block; width: 100%; max-width: 380px; transition: filter 0.15s; }
+    .tel .t-lista a:active, .tel .t-lista a:hover { filter: brightness(1.25) drop-shadow(0 0 6px rgba(255,170,60,0.5)); }
+    .tel .t-konto { display: flex; gap: 10px; width: 100%; max-width: 380px; margin-bottom: 8px; }
+    .tel .t-konto a { flex: 1; }
+    .tel .t-gora a { position: absolute; top: 43%; height: 33%; }
+    .tel .t-dol { background: url("assets/ramka_bok_l.png") left top / 3.92% auto repeat-y, url("assets/ramka_bok_p.png") right top / 3.92% auto repeat-y, #0f1014; }
+    .tel .t-dolimg { -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%); mask-image: linear-gradient(180deg, transparent 0%, #000 30%); }
+    .tel .t-stopka {
+      margin: 22px 0 0;
+      text-align: center; font-family: Georgia, "Times New Roman", serif;
+      font-size: 10px; line-height: 1.35; color: #b5ad9c;
+      text-shadow: 0 1px 2px #000, 0 0 4px #000, 0 0 8px #000;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="scena">
+  <img class="tlo" src="assets/glowna_z123_v2.jpg" alt="New Sanctuary – Diablo II: Resurrected">
+
+  <a class="przycisk gora" title="Logowanie"   style="left:22.1%; top:7.09%; width:21.5%; height:4.57%" href="logowanie.html"></a>
+  <a class="przycisk gora" title="Załóż konto" style="left:56.4%; top:7.09%; width:21.9%; height:4.57%" href="zaloz-konto.html"></a>
+
+  <a class="przycisk" title="Ściągnij moda" style="left:16.2%; top:60.3%; width:31.0%; height:5.8%" href="pobierz.html"></a>
+  <a class="przycisk" title="Opis zmian"    style="left:16.2%; top:67.2%; width:31.0%; height:5.8%" href="opis.html"></a>
+  <a class="przycisk" title="Informacja zwrotna" style="left:16.2%; top:74.2%; width:31.0%; height:5.8%" href="informacja-zwrotna.html"></a>
+  <a class="przycisk" title="Wspólna gra"   style="left:53.3%; top:60.3%; width:30.8%; height:5.8%" href="wspolna-gra.html"></a>
+  <a class="przycisk" title="Handel"        style="left:53.3%; top:67.2%; width:30.8%; height:5.8%" href="handel.html"></a>
+  <a class="przycisk" title="Inne"          style="left:53.3%; top:74.2%; width:30.8%; height:5.8%" href="inne.html"></a>
+
+  <p class="stopka">Projekt nie jest związany z firmą Blizzard Entertainment. Diablo II: Resurrected jest znakiem towarowym Blizzard Entertainment.</p>
+</div>
+
+<!-- układ na telefon (wycinki z tego samego tła: narzedzia\tel_wycinki.py) -->
+<div class="tel">
+  <div class="t-gora">
+    <img src="assets/ramka_gora.jpg" alt="">
+    <a title="Logowanie" style="left:22.1%; width:21.5%" href="logowanie.html"></a>
+    <a title="Załóż konto" style="left:56.4%; width:21.9%" href="zaloz-konto.html"></a>
+  </div>
+  <img src="assets/tel_obraz.jpg" alt="New Sanctuary – Diablo II: Resurrected">
+  <div class="t-srodek">
+    <p class="t-opis">New Sanctuary to niezależny projekt rozwijający Diablo II: Resurrected, którego celem jest dostarczenie graczom nowych możliwości rozgrywki, innowacyjnych mechanik i świeżego spojrzenia na kultowe Diablo II.</p>
+    <div class="t-ozdoba"><span></span></div>
+    <nav class="t-lista">
+      <a href="pobierz.html"><img src="assets/tel_p_pobierz.png" alt="Ściągnij moda"></a>
+      <a href="opis.html"><img src="assets/tel_p_opis.png" alt="Opis zmian"></a>
+      <a href="informacja-zwrotna.html"><img src="assets/tel_p_info.png" alt="Informacja zwrotna"></a>
+      <a href="wspolna-gra.html"><img src="assets/tel_p_wspolna.png" alt="Wspólna gra"></a>
+      <a href="handel.html"><img src="assets/tel_p_handel.png" alt="Handel"></a>
+      <a href="inne.html"><img src="assets/tel_p_inne.png" alt="Inne"></a>
+    </nav>
+    <p class="t-stopka">Projekt nie jest związany z firmą Blizzard Entertainment. Diablo II: Resurrected jest znakiem towarowym Blizzard Entertainment.</p>
+  </div>
+  <div class="t-dol">
+    <img class="t-dolimg" src="assets/tel_dol.jpg" alt="">
+  </div>
+</div>
+</body>
+</html>

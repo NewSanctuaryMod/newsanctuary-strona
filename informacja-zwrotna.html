@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informacja zwrotna – New Sanctuary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="podstrona.css">
+</head>
+<body>
+<div class="ramka">
+  <div class="ramka-gora">
+    <img src="assets/ramka_gora.jpg" alt="">
+    <a class="gora" title="Logowanie" style="left:22.1%; width:21.5%" href="logowanie.html"></a>
+    <a class="gora" title="Załóż konto" style="left:56.4%; width:21.9%" href="zaloz-konto.html"></a>
+  </div>
+  <main class="ramka-srodek">
+    <h1>Informacja zwrotna</h1>
+    <div class="ozdoba"><span></span></div>
+<p class="wstep">Znalazłeś błąd albo masz pomysł na zmianę w modzie? Napisz – wiadomość trafi prosto do autora i nikt inny jej nie zobaczy.
+Jeśli podasz e-mail, autor może Ci prywatnie odpowiedzieć.</p>
+<form class="formularz" id="formularz" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="a6d1d8d5-7c2a-4c4c-8b5a-8f4a0482ba52">
+  <input type="hidden" name="subject" value="New Sanctuary – informacja zwrotna">
+  <input type="hidden" name="from_name" value="Strona New Sanctuary">
+  <input type="checkbox" name="botcheck" class="ukryte" tabindex="-1" autocomplete="off">
+  <label>Rodzaj
+    <select name="rodzaj">
+      <option>Błąd w modzie</option>
+      <option>Pomysł na zmianę</option>
+      <option>Pytanie</option>
+      <option>Inne</option>
+    </select>
+  </label>
+  <label>Twój nick (opcjonalnie)
+    <input type="text" name="nick" maxlength="60">
+  </label>
+  <label>Twój e-mail (opcjonalnie – tylko po to, żeby autor mógł odpowiedzieć)
+    <input type="email" name="email" maxlength="120">
+  </label>
+  <label>Wiadomość
+    <textarea name="wiadomosc" rows="7" required maxlength="5000"></textarea>
+  </label>
+  <div class="wroc"><button type="submit" class="przycisk">Wyślij</button></div>
+  <p class="wynik" id="wynik" role="status"></p>
+</form>
+<script>
+  const f = document.getElementById('formularz'), wynik = document.getElementById('wynik');
+  f.addEventListener('submit', async e => {
+    e.preventDefault();
+    wynik.textContent = 'Wysyłanie…';
+    try {
+      const r = await fetch(f.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(f) });
+      const j = await r.json();
+      if (j.success) { f.reset(); wynik.textContent = 'Dziękujemy! Wiadomość została wysłana.'; }
+      else { wynik.textContent = 'Nie udało się wysłać wiadomości. Spróbuj ponownie później.'; }
+    } catch (err) { wynik.textContent = 'Nie udało się wysłać wiadomości (brak połączenia?).'; }
+  });
+</script>
+    <div class="wroc"><a class="przycisk" href="index.html">Strona główna</a></div>
+  </main>
+  <div class="ramka-dol">
+    <img src="assets/ramka_dol.jpg" alt="">
+    <p class="stopka">Projekt nie jest związany z firmą Blizzard Entertainment. Diablo II: Resurrected jest znakiem towarowym Blizzard Entertainment.</p>
+  </div>
+</div>
+</body>
+</html>
