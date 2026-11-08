@@ -63,7 +63,8 @@ li { margin-bottom: 0.5em; }
 .spis li { margin-bottom: 0.25em; }
 
 /* ozdoba pod tytułem – złota linia ze znakiem (obrazek użytkownika, tło usunięte: narzedzia\ozdoba_przezroczysta.ps1) */
-.ozdoba-img { display: block; width: 56%; max-width: 560px; height: auto; margin: 1.2cqw auto 1.5cqw; }
+/* 55,46cqw = 665/1199 – ta sama wielkość co na grafice strony głównej */
+.ramka .ozdoba-img { display: block; width: 55.46cqw; height: auto; margin: 1.2cqw auto 1.5cqw; }
 .ozdoba { display: flex; align-items: center; gap: 0.6cqw; width: 56%; margin: 1.2cqw auto 1.5cqw; }
 .ozdoba::before, .ozdoba::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #c79c4a); }
 .ozdoba::after { background: linear-gradient(90deg, #c79c4a, transparent); }
