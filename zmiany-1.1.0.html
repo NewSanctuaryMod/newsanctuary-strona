@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zmiany w wersji 1.1.0 – New Sanctuary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="podstrona.css">
+</head>
+<body>
+<div class="ramka">
+  <div class="ramka-gora">
+    <img src="assets/ramka_gora.jpg" alt="">
+    <a class="gora" title="Logowanie" style="left:22.1%; width:21.5%" href="logowanie.html"></a>
+    <a class="gora" title="Załóż konto" style="left:56.4%; width:21.9%" href="zaloz-konto.html"></a>
+  </div>
+  <main class="ramka-srodek">
+    <h1>Zmiany w wersji 1.1.0</h1>
+    <img class="ozdoba-img" src="assets/ozdoba.png" alt="">
+<div class="wroc gorny"><a class="przycisk" href="pobierz.html">Pobierz moda</a></div>
+<p class="wstep">Wersja 1.1.0 z 13.11.2026 – wszystkie zmiany z tego dnia. Wgraj ją tak jak poprzednie wersje (zawartość zipa do folderu gry, z zastąpieniem plików). Zapisy postaci zostają.</p>
+
+<h3>Kamera</h3>
+<ul>
+<li>Płynne przybliżanie: każdy ząbek kółka myszy przybliża lub oddala o tyle samo, a kamera dojeżdża do nowego widoku płynnie.</li>
+<li>Gra pamięta przybliżenie osobno dla każdej postaci, także po wyjściu z gry. Nowa postać zaczyna od największego przybliżenia.</li>
+</ul>
+<div class="tab-owijka"><table class="tab"><tr><th>Kamera</th><th>Wartość</th></tr><tr><td>Widoki</td><td>20 (19 skoków kółka)</td></tr><tr><td>Jeden skok</td><td>około 6,9%</td></tr><tr><td>Najbliżej (start nowej postaci)</td><td>2,5×</td></tr><tr><td>Najdalej</td><td>0,71× – 2 razy więcej terenu</td></tr></table></div>
+
+<h3>Automapa i dolny pasek</h3>
+<ul>
+<li>Automapa w 3 krokach: róg → duża mapa na środku → wyłączona. Esc zamyka mapę od razu.</li>
+<li>Stan przycisków paska i automapy (także dużej) jest pamiętany osobno dla każdej postaci – po wyjściu i ponownym wejściu wszystko jest tak, jak było.</li>
+<li>Przyciski dolnego paska działają niezależnie od ustawień klawiszy gracza.</li>
+<li>Nowa postać zaczyna z chodzeniem zamiast biegu.</li>
+</ul>
+
+<h3>Złoto</h3>
+<ul>
+<li>Złoto na ziemi z odstępami i bez „szt.” – np. „927 388 złota”, w kolorze licznika złota.</li>
+<li>Słowo „złota” przy cenach u kupców i kowali: koszt, koszt naprawy, wartość sprzedaży, naprawa całego ekwipunku.</li>
+<li>„Maks. złota” (podpowiedź nad złotem w ekwipunku i skrytce) w kolorze cyfr licznika.</li>
+</ul>
+
+<h3>Kolory nazw</h3>
+<ul>
+<li>Runy, klucze Uberów, czaszki i Uber odłamki mają jasnoszare nazwy.</li>
+<li>Szare przedmioty z gniazdami, eteryczne i baza pod nazwą słowa runicznego leżące na ziemi są szare (wcześniej bywały fioletowe).</li>
+</ul>
+
+<h3>Odłamki Kamienia Świata i Strefy Grozy</h3>
+<ul>
+<li>Nowy opis odłamków w formie listy: poziom strefy (+2 / +4 / +6 względem postaci, maksymalnie 102 / 104 / 106), liczba losowych modyfikatorów z puli 9, gęstość potworów i heroldowie.</li>
+<li>Super i Uber odłamki: heroldów jest 2 / 3 razy więcej (razem z gęstością potworów) i mają więcej losowych modyfikatorów.</li>
+</ul>
+<div class="tab-owijka"><table class="tab"><tr><th>Odłamek</th><th>Zwykły</th><th>Super</th><th>Uber</th></tr><tr><td>Wymagany poziom</td><td>75</td><td>85</td><td>95</td></tr><tr><td>Poziom strefy</td><td>+2 (maks. 102)</td><td>+4 (maks. 104)</td><td>+6 (maks. 106)</td></tr><tr><td>Losowe modyfikatory strefy</td><td>1 z 9</td><td>2 z 9</td><td>3 z 9</td></tr><tr><td>Gęstość potworów</td><td>jak w grze</td><td>+30%</td><td>+60%</td></tr><tr><td>Heroldowie</td><td>3–4 modyfikatory</td><td>2× więcej, 4–5 modyfikatorów</td><td>3× więcej, 5–6 modyfikatorów</td></tr></table></div>
+
+<h3>Księgi słów runicznych</h3>
+<ul>
+<li>Księgi kupione w sklepie zawsze zamieniają się we właściwą księgę – także przy pełnym ekwipunku i gdy w skrytce leżą już inne księgi.</li>
+<li>Księgi nie mają już linijki „Poziom przedmiotu”.</li>
+</ul>
+
+<h3>Zakładki Runy i Materiały</h3>
+<ul>
+<li>Naprawa: niektóre pola pokazywały „Niezidentyfikowane” (5 ksiąg słów runicznych, esencje i bursztynowe odłamki), choć tych przedmiotów się nie identyfikuje. Takie pole naprawia się samo przy wejściu do gry.</li>
+<li>Przedmioty z tych zakładek trafiają do skrytki zawsze zidentyfikowane, więc błąd nie wróci.</li>
+</ul>
+
+<h3>Opisy przedmiotów</h3>
+<ul>
+<li>Klucze: „3 różne klucze: losowy portal do jednego z 3 uberów (Uber Andariel, Uber Duriel, Uber Izual)”.</li>
+<li>Figurki: biała linijka „Włóż do Kostki Horadrimów na Piekle w Harrogath”, pod kreską na szaro „z dwoma pozostałymi statuetkami otwiera portal do Uber Starożytnych”.</li>
+<li>Kamienie Dusz: pod kreską na szaro – skażenie przedmiotu, wezwanie klona z Młotem Piekielnej Kuźni na Piekle na Rzece Płomieni oraz portal do Uber Tristram.</li>
+<li>Esencje: „z 4 pozostałymi esencjami w Kostce Horadrimów tworzy Znak Rozgrzeszenia”.</li>
+<li>Sztandary: jedna biała linijka z bonusem do szansy na magiczne przedmioty, pod kreską limity dla Zwykłej, Super i Uber Strefy Grozy.</li>
+<li>„Znak Rozgrzeszenia” wszędzie tak jak w oryginalnej grze (zamiast „Żeton”).</li>
+</ul>
+
+<div class="wroc dolny"><a class="przycisk" href="pobierz.html">Pobierz moda</a></div>
+    <div class="wroc"><a class="przycisk" href="index.html">Strona główna</a></div>
+  </main>
+  <div class="ramka-dol">
+    <img src="assets/ramka_dol.jpg" alt="">
+    <p class="stopka">Projekt nie jest związany z firmą Blizzard Entertainment. Diablo II: Resurrected jest znakiem towarowym Blizzard Entertainment.</p>
+  </div>
+</div>
+</body>
+</html>
