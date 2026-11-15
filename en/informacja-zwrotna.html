@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feedback – New Sanctuary</title>
+<link rel="alternate" hreflang="pl" href="https://newsanctuary.pl/informacja-zwrotna.html">
+<link rel="alternate" hreflang="en" href="https://newsanctuary.pl/en/informacja-zwrotna.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../podstrona.css">
+</head>
+<body>
+<div class="ramka">
+  <div class="ramka-gora">
+    <img src="../assets/ramka_gora_pusta.jpg" alt="">
+    <a class="gora" style="left:21.935%; width:22.019%" href="../informacja-zwrotna.html" hreflang="pl" lang="pl"><span class="napis">Polski</span></a>
+    <a class="gora wybrany" style="left:56.38%; width:22.019%" href="informacja-zwrotna.html" hreflang="en" lang="en" aria-current="page"><span class="napis">English</span></a>
+  </div>
+  <main class="ramka-srodek">
+    <h1>Feedback</h1>
+    <img class="ozdoba-img" src="../assets/ozdoba.png" alt="">
+<p class="wstep">We will keep developing the project, and your ideas will have a real impact on its future. We want<br>New Sanctuary to become more than a mod – a new standard for Diablo II: Resurrected, built together with you.</p>
+<p class="wstep">Let us know what you would like to add, change or improve. We will consider every suggestion!</p>
+<p class="wstep" style="font-size:0.85em; color:#8f877a">Your message goes straight to us and no one else will see it. If you leave your e-mail, we can reply to you privately.</p>
+<form class="formularz" id="formularz" action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="a6d1d8d5-7c2a-4c4c-8b5a-8f4a0482ba52">
+  <input type="hidden" name="subject" value="New Sanctuary – feedback (EN)">
+  <input type="hidden" name="from_name" value="Strona New Sanctuary">
+  <input type="checkbox" name="botcheck" class="ukryte" tabindex="-1" autocomplete="off">
+  <label>Type
+    <select name="rodzaj">
+      <option>Idea for a change</option>
+      <option>Bug in the mod</option>
+      <option>Question</option>
+      <option>Other</option>
+    </select>
+  </label>
+  <label>Your nickname (optional)
+    <input type="text" name="nick" maxlength="60">
+  </label>
+  <label>Your e-mail (optional – only so we can reply)
+    <input type="email" name="email" maxlength="120">
+  </label>
+  <label>Message
+    <textarea name="wiadomosc" rows="7" required maxlength="5000"></textarea>
+  </label>
+  <div class="wroc"><button type="submit" class="przycisk">Send</button></div>
+  <p class="wynik" id="wynik" role="status"></p>
+</form>
+<script>
+  const f = document.getElementById('formularz'), wynik = document.getElementById('wynik');
+  f.addEventListener('submit', async e => {
+    e.preventDefault();
+    wynik.textContent = 'Sending…';
+    try {
+      const r = await fetch(f.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(f) });
+      const j = await r.json();
+      if (j.success) { f.reset(); wynik.textContent = 'Thank you! Your message has been sent.'; }
+      else { wynik.textContent = 'The message could not be sent. Please try again later.'; }
+    } catch (err) { wynik.textContent = 'The message could not be sent (no connection?).'; }
+  });
+</script>
+    <div class="wroc"><a class="przycisk" href="index.html">Home</a></div>
+  </main>
+  <div class="ramka-dol">
+    <img src="../assets/ramka_dol.jpg" alt="">
+    <p class="stopka">This project is not affiliated with Blizzard Entertainment. Diablo II: Resurrected is a trademark of Blizzard Entertainment.</p>
+  </div>
+</div>
+</body>
+</html>

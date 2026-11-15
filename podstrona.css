@@ -57,7 +57,7 @@ h2 {
 h3 { font-family: "Cinzel", Georgia, serif; color: #d9b96a; font-size: 1.05em; margin: 1.4em 0 0.4em; }
 a { color: #e6c77a; }
 li { margin-bottom: 0.5em; }
-.wstep { text-align: center; color: #b5ad9c; }
+.wstep { text-align: center; color: #b5ad9c; text-wrap: balance; }   /* linijki równej długości (2026-11-15) */
 .uwaga { padding: 0.8em 1em; border-left: 3px solid #b8913f; background: rgba(184, 145, 63, 0.08); }
 .spis { columns: 2; padding-left: 1.2em; }
 .spis li { margin-bottom: 0.25em; }
@@ -110,6 +110,23 @@ li { margin-bottom: 0.5em; }
 .przycisk::before { left: calc(7.6% - 1.6cqw); }
 .przycisk::after { right: calc(7.6% - 1.6cqw); }
 .gora:hover::before, .gora:hover::after, .przycisk:hover::before, .przycisk:hover::after { opacity: 1; }
+
+/* przełącznik języka w nagłówku (2026-11-15): napis na pustym przycisku, wybrany język złoty z zapalonymi kamieniami */
+.gora .napis {
+  font-family: "Cinzel", Georgia, serif; font-weight: 400;
+  font-size: 1.45cqw; letter-spacing: 0.2em; text-transform: uppercase; white-space: nowrap;
+  padding-left: 0.2em;
+  color: #fbf6ea; -webkit-text-stroke: 0.05cqw #fbf6ea;
+  text-shadow: 0 1px 2px #000, 0 0 5px rgba(0,0,0,0.9);
+}
+.gora.wybrany .napis { color: #f3cf74; -webkit-text-stroke-color: #f3cf74; }
+/* górne przyciski też jako czysty pusty przycisk (264×59 px na nagłówku 1199×206), napis szary jak na dolnych */
+.ramka-gora .gora { top: 45.63%; height: 28.64%; background: url("assets/przycisk_pusty.png") center / 100% 100% no-repeat; }
+.ramka-gora .gora:hover { backdrop-filter: none; box-shadow: none; filter: brightness(1.25) drop-shadow(0 0 0.8cqw rgba(255,170,60,0.5)); }
+.ramka-gora .gora::before { left: calc(7.6% - 1.3cqw); }
+.ramka-gora .gora::after { right: calc(7.6% - 1.3cqw); }
+.ramka-gora .gora:not(.wybrany) .napis { color: #d2cfc7; -webkit-text-stroke: 0.04cqw #d2cfc7; }
+.gora.wybrany::before, .gora.wybrany::after { opacity: 1; }
 
 .wroc { display: flex; justify-content: center; margin-top: 3cqw; }
 .wroc .przycisk { width: 31cqw; min-width: 260px; }
