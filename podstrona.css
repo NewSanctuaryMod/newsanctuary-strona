@@ -15,9 +15,10 @@ html, body { margin: 0; background: #0b0a09; }
 .ramka-srodek {
   position: relative;
   padding: 2.5cqw 9% 3cqw;
+  /* listwy od dołu, w fazie wzoru dołu ramki (ramka_dol_niebo2.jpg 1199×566: lewa 119, prawa 81 px kafelka) – bez sklejenia */
   background:
-    url("assets/ramka_bok_l.png") left top / 4.003% auto repeat-y,
-    url("assets/ramka_bok_p.png") right top / 4.003% auto repeat-y,
+    url("assets/ramka_bok_l.png") left 0 bottom 9.925cqw / 4.003% auto repeat-y,
+    url("assets/ramka_bok_p.png") right 0 bottom 6.756cqw / 4.003% auto repeat-y,
     radial-gradient(ellipse at 50% 0%, #22252c 0%, #15171c 55%, #0f1014 100%);
   color: #e4ddcb;
   font-family: Georgia, "Times New Roman", serif;
@@ -132,7 +133,7 @@ li { margin-bottom: 0.5em; }
 .wroc .przycisk { width: 31cqw; min-width: 260px; }
 
 .stopka {
-  position: absolute; left: 8%; width: 84%; top: 88.6%; margin: 0;
+  position: absolute; left: 8%; width: 84%; top: 89%; margin: 0;   /* dół 1199×566 (było 546, 88,6%) – tekst ok. 21 px nad krawędzią */
   text-align: center; font-family: Georgia, "Times New Roman", serif;
   font-size: 1.15cqw; color: #b5ad9c;
   text-shadow: 0 1px 2px #000, 0 0 4px #000, 0 0 8px #000;
